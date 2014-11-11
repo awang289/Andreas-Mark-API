@@ -81,6 +81,37 @@ def search(term, location):
     }
     return yelp_request(API_HOST, SEARCH_PATH, url_params=url_params)
 
+def get_business(business_id):
+    """Query the Business API by a business ID.
+    Args:
+        business_id (str): The ID of the business to query.
+    Returns:
+        dict: The JSON response from the request.
+    """
+    business_path = BUSINESS_PATH + business_id
+
+    return request(API_HOST, business_path)
+
+
+def query_api(term, location):
+    """Queries the API by the input values from the user.
+    Args:
+        term (str): The search term to query.
+        location (str): The location of the business to query.
+    """
+    response = search(term, location)
+
+    businesses = response.get('businesses')
+    
+    
+    if not businesses:
+        return "No businesses found with name {0}".format(term,location)
+    
+    business_id = businesses[0]['id']
+    business_name = businesses[0]['name']
+    ret = {'id':business_id, 'name':business_name}
+
+    return ret
 
 @app.route("/", methods=["GET","POST"])
 def home():
@@ -88,7 +119,7 @@ def home():
         return render_template("home.html")
     else:
         parameters = request.form["keywords"]
-        results = search(parameters, DEFAULT_LOCATION)
+        results = query_api(parameters, DEFAULT_LOCATION)
         return render_template("results.html", results = results)
 
 if __name__=="__main__":
