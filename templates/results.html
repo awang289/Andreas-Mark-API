@@ -1,3 +1,20 @@
 <html>
-{{results}}
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+<body>
+  {{results}}
+  <ul>
+    {% if name %}
+    <li>{{results.get('name')}}</li>
+    {% endif %}
+    {% if address %}
+    <li>{{results.get('address')}}</li>
+    {% endif %}
+    {% if rating %}
+    <li>{{results.get('rating')}}</li>
+    {% endif %}
+
+  </ul>
+</body>
 </html>

@@ -1,8 +1,31 @@
 <html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+
+<body>
 {{error}}
 <form name="search"  method="POST">    
   <label for="keywords">Parameters</label>  
-  <input type="text" name="keywords" placeholder="Search for restaurants" required>
+  <input type="text" name="keywords" placeholder="Search for businesses" required>
   <input type="submit" value="Search"> 
+<br>
+<h3>Here are some things you can find out about the business you entered.<h3>
+<form class="pure-form">
+    <label for="option-one" class="pure-checkbox">
+        <input id="option-one" type="checkbox" value="name" name = "name">
+        Name
+    </label><br>
+    <label for="option-one" class="pure-checkbox">
+        <input id="option-one" type="checkbox" value="name" name = "open">
+        Address
+    </label><br>
+    <label for="option-one" class="pure-checkbox">
+        <input id="option-one" type="checkbox" value="name" name = "rating">
+        Whats the rating?
+    </label><br>
 </form>
+  
+</form>
+</body>
 </html>
