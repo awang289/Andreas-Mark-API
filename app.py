@@ -110,10 +110,19 @@ def query_api(term, location):
     
     business_id = businesses[0]['id']
     business_name = businesses[0]['name']
-    business_address = businesses[0]['location']
-    
     business_rating = businesses[0]['rating']
-    ret = {'id':business_id, 'name':business_name, 'address':business_address, 'rating':business_rating}
+    business_address = businesses[0]['location']
+    business_phone = businesses[0]['phone']
+    business_address = business_address.get('display_address')
+    
+
+    str=""
+    for item in business_address:
+       str = str+item+".  "
+    business_address=str
+    
+    
+    ret = {'id':business_id, 'name':business_name, 'address':business_address, 'rating':business_rating, 'phone':business_phone}
 
     return ret
 
@@ -124,10 +133,11 @@ def home():
     else:
         parameters = request.form["keywords"]
         name = request.form.get('name')
-        openNow = request.form.get('address')
+        address = request.form.get('address')
         rating = request.form.get('rating')
+        phone = request.form.get('phone')
         results = query_api(parameters, DEFAULT_LOCATION)
-        return render_template("results.html", results = results, name = name, address=address, rating = rating)
+        return render_template("results.html", results = results, name = name, address=address, rating = rating, phone=phone)
 
 if __name__=="__main__":
     app.debug=True
