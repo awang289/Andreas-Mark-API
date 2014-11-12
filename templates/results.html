@@ -3,19 +3,19 @@
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 </head>
 <body>
-  {{results}}
+  Information for {{results.get('name')}}:
   <ul>
     {% if name %}
-    <li>{{results.get('name')}}</li>
+    <li>Name: {{results.get('name')}}</li>
     {% endif %}
     {% if address %}
-    <li>{{results.get('address')}}</li>
+    <li>Address: {{results.get('address')}}</li>
     {% endif %}
     {% if rating %}
-    <li>{{results.get('rating')}}</li>
+    <li>Rating: {{results.get('rating')}}</li>
     {% endif %}
     {% if phone  %}
-    <li>{{results.get('phone')}}</li>
+    <li>Phone: {{results.get('phone')}}</li>
     {% endif %}
 
   </ul>

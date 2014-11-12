@@ -132,11 +132,15 @@ def home():
         return render_template("home.html")
     else:
         parameters = request.form["keywords"]
+        location = request.form["location"]
         name = request.form.get('name')
         address = request.form.get('address')
         rating = request.form.get('rating')
         phone = request.form.get('phone')
-        results = query_api(parameters, DEFAULT_LOCATION)
+        if len(location) == 0:
+            results = query_api(parameters, DEFAULT_LOCATION)
+        else:
+            results = query_api(parameters, location)
         return render_template("results.html", results = results, name = name, address=address, rating = rating, phone=phone)
 
 if __name__=="__main__":
